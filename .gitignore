@@ -1,0 +1,8 @@
+logs/*
+ncs-cdb/
+netsim/
+packages/
+scripts/
+state/
+target/
+ncs.conf
