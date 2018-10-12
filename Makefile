@@ -11,5 +11,4 @@ netsim:
 
 nso:
 	-ncs-setup --dest .
-	-cp *.xml ncs-cdb
 	-ncs
