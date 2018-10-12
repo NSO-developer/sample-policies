@@ -27,7 +27,7 @@ make nso
 
 ## Adding Policies to NSO
 
-The scripts located in [./policies]  are files which describe the intended policy, and associated compliance/enforcement. These files are written in XML
+The scripts located in [./policies](./policies)  are files which describe the intended policy, and associated compliance/enforcement. These files are written in XML
 and can be used as payloads against, the NSO REST API, configured via CLI.
 
 In a pinch, you can also just `load merge` them from ncs_cli
