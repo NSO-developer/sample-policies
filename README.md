@@ -55,7 +55,17 @@ Loading.
 
 ## Verifying policies
 
-### Sync From devices
+### Single API
+
+All of the CLI steps outlined below can also be executed in Postman click the button to get started
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f9d64ed367d243419f95#?env%5Blocal%20NSO%5D=W3siZW5hYmxlZCI6dHJ1ZSwia2V5IjoidXNlcm5hbWUiLCJ2YWx1ZSI6ImFkbWluIiwidHlwZSI6InRleHQifSx7ImVuYWJsZWQiOnRydWUsImtleSI6InBhc3N3b3JkIiwidmFsdWUiOiJhZG1pbiIsInR5cGUiOiJ0ZXh0In0seyJlbmFibGVkIjp0cnVlLCJrZXkiOiJzZXJ2ZXIiLCJ2YWx1ZSI6ImxvY2FsaG9zdCIsInR5cGUiOiJ0ZXh0In0seyJlbmFibGVkIjp0cnVlLCJrZXkiOiJwb3J0IiwidmFsdWUiOiI4MDgwIiwidHlwZSI6InRleHQifV0=)
+
+### Single CLI
+
+The following steps are used to test the policies via CLI workflow
+
+#### Sync From devices
 ```
 admin@ncs# devices sync-from
 sync-result {
@@ -68,7 +78,7 @@ sync-result {
 }
 ```
 
-### Run Compliance Check
+#### Run Compliance Check
 
 ```
 admin@ncs# compliance reports report DNS_Servers_Configured run
@@ -78,7 +88,7 @@ info Checking 2 devices and no services
 location http://localhost:8080/compliance-reports/report_1_admin_1_2018-10-12T0:43:57:0.xml
 ```
 
-### Apply Device Template (with validation)
+#### Apply Device Template (with validation)
 ```
 admin@ncs(config)# devices device-group all-devices apply-template template-name Standard_DNS_Servers
 apply-template-result {
@@ -123,9 +133,9 @@ admin@ncs(config)#
 
 ```
 
-### Commit Changes
+#### Commit Changes
 
-Notice how other policies are being checked as well... 
+Notice how other policies are being checked as well...
 
 ```
 admin@ncs(config)# commit
@@ -137,7 +147,7 @@ Commit complete.
 ```
 
 
-### Get your rollback on...
+#### Get your rollback on...
 
 Since we have the benefits of models and transactions, NSO automatically generates a rollback patch.
 
