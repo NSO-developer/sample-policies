@@ -61,6 +61,8 @@ All of the CLI steps outlined below can also be executed in Postman click the bu
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f9d64ed367d243419f95#?env%5Blocal%20NSO%5D=W3siZW5hYmxlZCI6dHJ1ZSwia2V5IjoidXNlcm5hbWUiLCJ2YWx1ZSI6ImFkbWluIiwidHlwZSI6InRleHQifSx7ImVuYWJsZWQiOnRydWUsImtleSI6InBhc3N3b3JkIiwidmFsdWUiOiJhZG1pbiIsInR5cGUiOiJ0ZXh0In0seyJlbmFibGVkIjp0cnVlLCJrZXkiOiJzZXJ2ZXIiLCJ2YWx1ZSI6ImxvY2FsaG9zdCIsInR5cGUiOiJ0ZXh0In0seyJlbmFibGVkIjp0cnVlLCJrZXkiOiJwb3J0IiwidmFsdWUiOiI4MDgwIiwidHlwZSI6InRleHQifV0=)
 
+Also, make sure to checkout the [API docs](https://documenter.getpostman.com/view/23187/RWgqWK3D) for the same workflow and to generate your own code to consume these services.
+
 ### Single CLI
 
 The following steps are used to test the policies via CLI workflow
