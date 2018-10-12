@@ -52,3 +52,130 @@ Loading.
 1.04 KiB parsed in 0.00 sec (393.33 KiB/sec)
 
 ```
+
+## Verifying policies
+
+### Sync From devices
+```
+admin@ncs# devices sync-from
+sync-result {
+    device ios1
+    result true
+}
+sync-result {
+    device nx1
+    result true
+}
+```
+
+### Run Compliance Check
+
+```
+admin@ncs# compliance reports report DNS_Servers_Configured run
+id 1
+compliance-status violations
+info Checking 2 devices and no services
+location http://localhost:8080/compliance-reports/report_1_admin_1_2018-10-12T0:43:57:0.xml
+```
+
+### Apply Device Template (with validation)
+```
+admin@ncs(config)# devices device-group all-devices apply-template template-name Standard_DNS_Servers
+apply-template-result {
+    device ios1
+    result ok
+}
+apply-template-result {
+    device nx1
+    result ok
+}
+admin@ncs(config)# commit dry-run outformat cli   
+The following warnings were generated:
+  Interface 101/1/1 on nx1 needs description
+Proceed? [yes,no] yes
+cli {
+    local-node {
+        data  devices {
+                  device ios1 {
+                      config {
+                          ios:ip {
+                              name-server {
+             +                    # first
+             +                    name-server-list 8.8.8.8;
+                              }
+                          }
+                      }
+                  }
+                  device nx1 {
+                      config {
+                          nx:ip {
+                              name-server {
+             +                    servers 8.8.8.8;
+                              }
+                          }
+                      }
+                  }
+              }
+    }
+}
+admin@ncs(config)#
+admin@ncs(config)#
+
+```
+
+### Commit Changes
+
+Notice how other policies are being checked as well... 
+
+```
+admin@ncs(config)# commit
+The following warnings were generated:
+  Interface 101/1/1 on nx1 needs description
+Proceed? [yes,no] yes
+Commit complete.
+
+```
+
+
+### Get your rollback on...
+
+Since we have the benefits of models and transactions, NSO automatically generates a rollback patch.
+
+These will be stored as `logs/rollback<trans_number>` files that contain JSON data which can be applied via UI, CLI, or API to
+undo the change..
+
+Here's an example of it's contents...
+
+`cat logs/rollback10008`
+```
+# Created by: admin
+# Date: 2018-10-12 00:49:00
+# Via: cli
+# Type: delta
+# Label:
+# Comment:
+# No: 10008
+
+ncs:devices {
+    ncs:device ios1 {
+        ncs:config {
+            ios:ip {
+                ios:name-server {
+                    delete:
+                    ios:name-server-list 8.8.8.8;
+                }
+            }
+        }
+    }
+    ncs:device nx1 {
+        ncs:config {
+            nx:ip {
+                nx:name-server {
+                    delete:
+                    nx:servers 8.8.8.8;
+                }
+             }
+         }
+     }
+ }
+```

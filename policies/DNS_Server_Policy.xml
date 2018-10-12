@@ -65,51 +65,45 @@ Payload
       </ip>
     </config>
   </template>
+</devices>
 
 
-  <!-- Create a compliance report to audit against the template
+<!-- Create a compliance report to audit against the template
 
-  CLI configuration
-  ===================
-  compliance reports report DNS_Servers_Configured
-   compare-template Standard_DNS_Servers all-devices
-  !
-  !
-  API Endpoints
-  ===============
-  This template can be applied via a RESTFUL API,
-  from external applications/systems
+CLI configuration
+===================
+compliance reports report DNS_Servers_Configured
+ compare-template Standard_DNS_Servers all-devices
+!
+!
+API Endpoints
+===============
+This template can be applied via a RESTFUL API,
+from external applications/systems
 
-  URL
-  ----
-  /api/running/compliance/reports/report/DNS_Servers_Configured/_operations/run/
-
-
-  Payload
-  ---------
-  <input>
-  	<outformat>html</outformat>
-  </input>
-
-  -->
+URL
+----
+/api/running/compliance/reports/report/DNS_Servers_Configured/_operations/run/
 
 
-  <template>
-    <name>Standard_DNS_Servers</name>
-    <config>
-      <ip xmlns="http://tail-f.com/ned/cisco-nx">
-        <name-server>
-          <servers>8.8.8.8</servers>
-        </name-server>
-      </ip>
-      <ip xmlns="urn:ios">
-        <name-server>
-          <name-server-list tags=" replace ">
-            <address>8.8.8.8</address>
-          </name-server-list>
-        </name-server>
-      </ip>
-    </config>
-  </template>
-  </devices>
+Payload
+---------
+<input>
+	<outformat>html</outformat>
+</input>
+
+-->
+
+  <compliance xmlns="http://tail-f.com/ns/ncs">
+    <reports>
+      <report>
+        <name>DNS_Servers_Configured</name>
+        <compare-template>
+          <template-name>Standard_DNS_Servers</template-name>
+          <device-group>all-devices</device-group>
+        </compare-template>
+      </report>
+    </reports>
+  </compliance>
+
 </config>

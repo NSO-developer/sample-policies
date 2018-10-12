@@ -86,7 +86,7 @@ Payload
       <report>
         <name>NxosTelnetIsDisabled</name>
         <compare-template>
-          <template-name>TelnetIsDisabled</template-name>
+          <template-name>NxosTelnetIsDisabled</template-name>
           <device-group>nxos-devices</device-group>
         </compare-template>
       </report>
