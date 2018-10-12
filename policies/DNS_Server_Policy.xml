@@ -65,40 +65,35 @@ Payload
       </ip>
     </config>
   </template>
-  </devices>
-</config>
 
 
+  <!-- Create a compliance report to audit against the template
 
-<!-- Create a compliance report to audit against the template
+  CLI configuration
+  ===================
+  compliance reports report DNS_Servers_Configured
+   compare-template Standard_DNS_Servers all-devices
+  !
+  !
+  API Endpoints
+  ===============
+  This template can be applied via a RESTFUL API,
+  from external applications/systems
 
-CLI configuration
-===================
-compliance reports report DNS_Servers_Configured
- compare-template Standard_DNS_Servers all-devices
-!
-!
-API Endpoints
-===============
-This template can be applied via a RESTFUL API,
-from external applications/systems
-
-URL
-----
-/api/running/compliance/reports/report/DNS_Servers_Configured/_operations/run/
-
-
-Payload
----------
-<input>
-	<outformat>html</outformat>
-</input>
-
--->
+  URL
+  ----
+  /api/running/compliance/reports/report/DNS_Servers_Configured/_operations/run/
 
 
-<config xmlns="http://tail-f.com/ns/config/1.0">
-  <devices xmlns="http://tail-f.com/ns/ncs">
+  Payload
+  ---------
+  <input>
+  	<outformat>html</outformat>
+  </input>
+
+  -->
+
+
   <template>
     <name>Standard_DNS_Servers</name>
     <config>

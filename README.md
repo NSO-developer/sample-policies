@@ -34,10 +34,21 @@ In a pinch, you can also just `load merge` them from ncs_cli
 
 ```
 ncs_cli -u admin -C
+
 admin@ncs# config t
 Entering configuration mode terminal
+
 admin@ncs(config)# load merge policies/Device_Groups.xml
 Loading.
-852 bytes parsed in 0.00 sec (236.91 KiB/sec)
+852 bytes parsed in 0.00 sec (211.33 KiB/sec)
+admin@ncs(config)# load merge policies/DNS_Server_Policy.xml
+Loading.
+2.39 KiB parsed in 0.00 sec (753.97 KiB/sec)
+admin@ncs(config)# load merge policies/Telnet_is_Disabled.xml
+Loading.
+2.00 KiB parsed in 0.01 sec (136.80 KiB/sec)
+admin@ncs(config)# load merge policies/Proactively_Enforce_Interface_Descriptions.xml
+Loading.
+1.04 KiB parsed in 0.00 sec (393.33 KiB/sec)
 
 ```

@@ -51,7 +51,7 @@ Payload
     </config>
   </template>
   </devices>
-</config>
+
 
 <!-- Create a compliance report to audit against the template
 
@@ -81,8 +81,6 @@ Payload
 
 -->
 
-
-<config xmlns="http://tail-f.com/ns/config/1.0">
   <compliance xmlns="http://tail-f.com/ns/ncs">
     <reports>
       <report>

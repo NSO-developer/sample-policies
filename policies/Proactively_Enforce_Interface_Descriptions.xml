@@ -3,7 +3,6 @@
 This proactively in enforces a policy that states
 that all enabled interfaces should have a description
 
-
 CLI Equivalent
 
 admin@ncs# show running-config policy rule
@@ -26,8 +25,10 @@ policy rule EnabledInterfacesRequireDescription
             string-length(./description) > 5
       -->
       <expr>./description</expr>
-      <!-- Let user know what they did wrong -->
+      <!-- Let user know what they did wrong, but let them override it -->
       <warning-message>Interface {./name} on {../../../name} needs description</warning-message>
+      <!-- Or change it to an error to prevent it all together -->
+      <!-- <error-message>Interface {./name} on {../../../name} needs description</error-message> -->
     </rule>
   </policy>
 </config>
