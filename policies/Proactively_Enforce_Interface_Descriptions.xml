@@ -1,0 +1,33 @@
+<!--
+
+This proactively in enforces a policy that states
+that all enabled interfaces should have a description
+
+
+CLI Equivalent
+
+admin@ncs# show running-config policy rule
+policy rule EnabledInterfacesRequireDescription
+ foreach         /devices/device/config/nx:interface/Ethernet[not(shutdown)]
+ expr            ./description
+ warning-message "Interface {./name} on {../../../name} needs description"
+!
+-->
+
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <policy xmlns="http://tail-f.com/yang/configuration-policy">
+    <rule>
+      <name>EnabledInterfacesRequireDescription</name>
+      <!-- Loop through each device -->
+      <foreach>/devices/device/config/nx:interface/Ethernet[not(shutdown)]</foreach>
+      <!-- Evaluate whether there is a desciption
+
+           other operations can be used e.g
+            string-length(./description) > 5
+      -->
+      <expr>./description</expr>
+      <!-- Let user know what they did wrong -->
+      <warning-message>Interface {./name} on {../../../name} needs description</warning-message>
+    </rule>
+  </policy>
+</config>

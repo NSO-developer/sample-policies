@@ -1,0 +1,97 @@
+<!--
+
+This configuration will create a device template and associated
+compliance report to ensure that all devices have telnet disabled
+
+API Configuration
+====================
+To install this policy, simply use this file as the payload for a POST
+to /api/running
+
+CLI Configuration
+===================
+
+If you prefer to configure manually via CLI...
+
+devices template TelnetIsDisabled
+ config
+  ! Tags: delete (/devices/template{TelnetIsDisabled}/config/nx:feature)
+  nx:feature telnet
+ !
+
+API Endpoints
+===============
+This template can be applied via a RESTFUL API,
+from external applications/systems
+
+URL
+----
+/api/running/devices/device-group/<device-group>/_operations/apply-template
+
+Payload
+---------
+<input>
+	<template-name>TelnetIsDisabled</template-name>
+</input>
+
+-->
+
+
+<!-- Create a template which reflects the desired state configuration.
+<!-- This template can be applied to or audited against devices or groups -->
+
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+  <template>
+    <name>NxosTelnetIsDisabled</name>
+    <config>
+      <feature xmlns="http://tail-f.com/ned/cisco-nx" tags=" delete ">
+        <telnet/>
+      </feature>
+    </config>
+  </template>
+  </devices>
+</config>
+
+<!-- Create a compliance report to audit against the template
+
+CLI configuration
+===================
+
+compliance reports report NxosTelnetIsDisabled
+ compare-template TelnetIsDisabled nxos-devices
+ !
+!
+
+API Endpoints
+===============
+This template can be applied via a RESTFUL API,
+from external applications/systems
+
+URL
+----
+/api/running/compliance/reports/report/NxosTelnetIsDisabled/_operations/run/
+
+
+Payload
+---------
+<input>
+	<outformat>html</outformat>
+</input>
+
+-->
+
+
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <compliance xmlns="http://tail-f.com/ns/ncs">
+    <reports>
+      <report>
+        <name>NxosTelnetIsDisabled</name>
+        <compare-template>
+          <template-name>TelnetIsDisabled</template-name>
+          <device-group>nxos-devices</device-group>
+        </compare-template>
+      </report>
+    </reports>
+  </compliance>
+</config>

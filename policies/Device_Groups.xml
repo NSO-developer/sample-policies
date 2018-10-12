@@ -1,0 +1,37 @@
+<!--
+
+Groups are useful for organizing your devices in a way
+that makes sense to you.
+
+Devices can be a member of more than one group,
+and device groups can be nested.
+
+CLI Equivalent
+
+devices device-group all-devices
+ device-group [ ios-devices nxos-devices ]
+!
+devices device-group ios-devices
+ device-name [ ios1 ]
+!
+devices device-group nxos-devices
+ device-name [ nx1 ]
+-->
+
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+  <device-group>
+    <name>all-devices</name>
+    <device-group>ios-devices</device-group>
+    <device-group>nxos-devices</device-group>
+  </device-group>
+  <device-group>
+    <name>ios-devices</name>
+    <device-name>ios1</device-name>
+  </device-group>
+  <device-group>
+    <name>nxos-devices</name>
+    <device-name>nx1</device-name>
+  </device-group>
+  </devices>
+</config>

@@ -6,3 +6,7 @@ scripts/
 state/
 target/
 ncs.conf
+state.yml
+agentStore
+README.ncs
+README.netsim
