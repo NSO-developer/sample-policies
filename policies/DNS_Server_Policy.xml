@@ -19,7 +19,7 @@ devices template Standard_DNS_Servers
  config
   nx:ip name-server servers [ 8.8.8.8 ]
   ! Tags: replace
-  ios:ip name-server name-server-list 8.8.8.8
+  ios:ip name-server 8.8.8.8
   !
  !
 !
@@ -51,18 +51,17 @@ Payload
   <template>
     <name>Standard_DNS_Servers</name>
     <config>
+      <!-- NX-OS -->
       <ip xmlns="http://tail-f.com/ned/cisco-nx">
         <name-server>
           <servers>8.8.8.8</servers>
         </name-server>
       </ip>
+      <!-- IOS -->
       <ip xmlns="urn:ios">
-        <name-server>
-          <name-server-list tags=" replace ">
-            <address>8.8.8.8</address>
-          </name-server-list>
-        </name-server>
+        <name-server>8.8.8.8</name-server>
       </ip>
+
     </config>
   </template>
 </devices>

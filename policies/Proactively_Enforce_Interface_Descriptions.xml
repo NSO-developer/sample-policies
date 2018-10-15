@@ -18,7 +18,7 @@ policy rule EnabledInterfacesRequireDescription
     <rule>
       <name>EnabledInterfacesRequireDescription</name>
       <!-- Loop through each device -->
-      <foreach>/devices/device/config/nx:interface/Ethernet[not(shutdown)]</foreach>
+      <foreach>/devices/device/config/ios:interface/GigabitEthernet[not(shutdown)]</foreach>
       <!-- Evaluate whether there is a desciption
 
            other operations can be used e.g
