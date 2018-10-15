@@ -7,6 +7,7 @@ More docs coming soon...
 # Requirements
 
 * NSO 4.7 - [Free Evaluation](https://developer.cisco.com/site/nso/)
+* cisco-ios and cisco-nx Network Element Drivers (NEDs) which ship with NSO evaluation
 
 
 # Installing
@@ -24,6 +25,9 @@ source /path/to/your/.ncsrc
 make netsim
 make nso
 ```
+
+**NOTE:** these commands should be run from the root of this repository.
+
 
 ## Adding Policies to NSO
 
@@ -49,8 +53,13 @@ Loading.
 admin@ncs(config)# load merge policies/Proactively_Enforce_Interface_Descriptions.xml
 Loading.
 1.04 KiB parsed in 0.00 sec (393.33 KiB/sec)
+admin@ncs(config)# commit
+Commit complete.
 
 ```
+
+**HINT:** this can be automated by running ./install_policies.sh
+
 
 ## Verifying policies
 
@@ -112,7 +121,7 @@ cli {
                           ios:ip {
                               name-server {
              +                    # first
-             +                    name-server-list 8.8.8.8;
+             +                    name-server 8.8.8.8;
                               }
                           }
                       }
@@ -147,6 +156,18 @@ Commit complete.
 
 ```
 
+#### Re-Run Compliance Check
+
+Now that our remediating templates have been applied, the compliance check should
+pass with `no-violation`
+
+```
+admin@ncs# compliance reports report DNS_Servers_Configured run
+id 2
+compliance-status no-violation
+info Checking 2 devices and no services
+location http://localhost:8080/compliance-reports/report_2_admin_0_2018-10-15T10:45:58:0.xml
+```
 
 #### Get your rollback on...
 
@@ -156,6 +177,8 @@ These will be stored as `logs/rollback<trans_number>` files that contain JSON da
 undo the change..
 
 Here's an example of it's contents...
+
+**NOTE:** make sure you exit out of `ncs_cli` and execute from terminal prompt.
 
 `cat logs/rollback10008`
 ```
@@ -190,3 +213,9 @@ ncs:devices {
      }
  }
 ```
+
+#### Cleanup
+
+To reset your environment, a `clean` target is defined in the [Makefile](./Makefile)
+
+From your terminal prompt you can execute `make clean` to reset your environment
